@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohsin Rasheed — Financial Analyst</title>
+<meta name="description" content="Portfolio of Mohsin Rasheed, Financial Analyst focused on business analysis, valuation, and AI assisted process automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14213D;
+    --paper: #F5F5F1;
+    --paper-raised: #FCFCFA;
+    --charcoal: #2B2B2B;
+    --stamp: #C98A2C;
+    --rule: #D8D6CF;
+    --measure: 66ch;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--charcoal);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--ink); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; }
+
+  .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--stamp);
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  header.hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero .label { display: block; margin-bottom: 22px; }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+    line-height: 1.16;
+    color: var(--ink);
+    margin: 0 0 22px;
+    max-width: 15ch;
+  }
+
+  .pitch {
+    max-width: var(--measure);
+    font-size: 1.12rem;
+    color: #45473f;
+    margin: 0 0 34px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    text-decoration: none;
+    padding: 12px 20px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn.primary {
+    background: var(--ink);
+    color: var(--paper-raised);
+  }
+
+  .btn.primary:hover { background: #0d1830; }
+  .btn:not(.primary):hover { background: rgba(20,33,61,0.06); }
+
+  .contact-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    color: #55574d;
+  }
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin: 0 0 20px;
+  }
+
+  section p {
+    max-width: var(--measure);
+    margin: 0 0 16px;
+  }
+
+  .focus-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 28px;
+  }
+
+  .focus-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 18px;
+    align-items: baseline;
+  }
+
+  .focus-item .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--stamp);
+    white-space: nowrap;
+  }
+
+  .focus-item h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.04rem;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+
+  .focus-item p { margin: 0; max-width: 56ch; color: #45473f; }
+
+  .projects-note {
+    border-left: 2px solid var(--stamp);
+    padding: 4px 0 4px 20px;
+    max-width: var(--measure);
+    color: #45473f;
+  }
+
+  footer {
+    padding: 48px 0 80px;
+  }
+
+  footer .label { display: block; margin-bottom: 10px; }
+
+  footer .contact-line a { display: inline-block; margin-right: 22px; }
+
+  @media (max-width: 560px) {
+    header.hero { padding: 64px 0 44px; }
+    .focus-item { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="label">Mohsin Rasheed / Berlin, Germany</span>
+    <h1>I read what the numbers are actually saying, then build the tool that gets there faster.</h1>
+    <p class="pitch">Financial Analyst in training, currently completing an MSc in International Business with a specialization in Finance and Analytics at HTW Berlin. Background in reconciliation, reporting, and process controls, now paired with AI assisted automation.</p>
+    <div class="actions">
+      <a class="btn primary" href="cv.pdf" download>Download CV</a>
+      <a class="btn" href="mailto:mohsinrasheed.contact@gmail.com">Email me</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <span class="label">About</span>
+    <h2>Finance background, analytics habit</h2>
+    <p>I spent 15 months as a Finance and Operations officer at Meezan Bank, reconciling over 200 accounts under IFRS with zero audit exceptions across that period. Along the way I built a KPI dashboard and a compliance checklist that nobody asked for, because I kept noticing the same gaps and wanted them closed before they became a problem.</p>
+    <p>That habit, noticing a manual process and fixing it before being asked, is what carried into my MSc, where I picked up Python, SQL, and AI assisted tooling to do the same thing at a larger scale.</p>
+  </section>
+
+  <section id="focus">
+    <span class="label">Focus areas</span>
+    <h2>Where I add value</h2>
+    <ul class="focus-list">
+      <li class="focus-item">
+        <span class="tag">analysis</span>
+        <div>
+          <h3>Financial analysis and reporting</h3>
+          <p>Valuation, variance analysis, reconciliation, and budget to actual reporting, grounded in IFRS and built for someone who needs to make a decision, not just read a number.</p>
+        </div>
+      </li>
+      <li class="focus-item">
+        <span class="tag">automate</span>
+        <div>
+          <h3>AI assisted process automation</h3>
+          <p>Using Python, SQL, and AI tooling to remove the manual, repetitive parts of finance work such as exception flagging, reconciliation, and report drafting.</p>
+        </div>
+      </li>
+      <li class="focus-item">
+        <span class="tag">decide</span>
+        <div>
+          <h3>Business decision support</h3>
+          <p>Turning a dataset into a short, specific recommendation, in the language the business actually uses, not a wall of numbers.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <span class="label">Case studies</span>
+    <h2>Projects</h2>
+    <p class="projects-note">The first case studies, covering valuation, reconciliation automation, and AI assisted reporting, are in progress and will be posted here shortly. Check back soon, or ask me directly for a walkthrough.</p>
+  </section>
+
+  <footer>
+    <span class="label">Get in touch</span>
+    <div class="contact-line">
+      <a href="mailto:mohsinrasheed.contact@gmail.com">mohsinrasheed.contact@gmail.com</a>
+      <a href="tel:+4915754979246">+49 157 54979246</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
