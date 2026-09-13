@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciliation and exception flagging tool — Mohsin Rasheed</title>
+<meta name="description" content="A case study on an automated reconciliation and exception flagging tool built by Mohsin Rasheed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14213D;
+    --paper: #F5F5F1;
+    --paper-raised: #FCFCFA;
+    --charcoal: #2B2B2B;
+    --stamp: #C98A2C;
+    --rule: #D8D6CF;
+    --measure: 68ch;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--charcoal);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; }
+
+  .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--stamp);
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 40px 0 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: #55574d;
+  }
+
+  header.hero {
+    padding: 24px 0 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero .label { display: block; margin-bottom: 18px; }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 18px;
+    max-width: 20ch;
+  }
+
+  .dek {
+    max-width: var(--measure);
+    font-size: 1.08rem;
+    color: #45473f;
+    margin: 0;
+  }
+
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+
+  section p, section li {
+    max-width: var(--measure);
+    margin: 0 0 14px;
+  }
+
+  ul, ol { padding-left: 22px; }
+
+  .exception-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 0;
+    font-size: 0.94rem;
+  }
+
+  .exception-table th, .exception-table td {
+    text-align: left;
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  .exception-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: var(--stamp);
+  }
+
+  .tools-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
+    color: #45473f;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    text-decoration: none;
+    padding: 12px 20px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+
+  .btn:hover { background: rgba(20,33,61,0.06); }
+
+  footer {
+    padding: 40px 0 80px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    color: #55574d;
+  }
+
+  @media (max-width: 560px) {
+    header.hero { padding: 16px 0 40px; }
+    .exception-table { font-size: 0.86rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+
+  <header class="hero">
+    <span class="label">Case study / Finance automation</span>
+    <h1>Reconciliation and exception flagging tool</h1>
+    <p class="dek">A script that matches transactions between an internal ledger and a bank statement automatically, and flags anything that does not line up, with a plain language reason attached to each exception.</p>
+  </header>
+
+  <section id="problem">
+    <h2>The problem</h2>
+    <p>At Meezan Bank, I reconciled over 200 client accounts by hand and built a compliance checklist after noticing the same errors recurring across a specific transaction type. That checklist caught issues before audit and became a team standard, but it was still a manual line by line check.</p>
+    <p>This project asks a simple question: how much of that manual reconciliation work can be automated, while keeping a human in the loop for the part that actually needs judgment, deciding what an exception means and what to do about it.</p>
+  </section>
+
+  <section id="approach">
+    <h2>The approach</h2>
+    <p>I built two mock datasets standing in for a general ledger export and a bank statement, since real client data cannot be used, with five deliberate mismatches planted across common real world reconciliation issues: an uncleared payment, a duplicate entry, a transposed digit, a timing gap between when a transaction was logged and when it cleared, and a bank fee that never made it into the ledger.</p>
+    <p>A Python script then matches every transaction by reference, and for anything that does not match cleanly, classifies why: missing on one side, a duplicate, an amount mismatch, or a timing difference, each with a short plain language explanation rather than just a flagged row.</p>
+    <p>I wrote the reconciliation logic myself and used AI to help write and debug the Python, the same way I use it in my day to day work now. Knowing what the tool needed to check and how to interpret the result was the actual work.</p>
+  </section>
+
+  <section id="findings">
+    <h2>What it found</h2>
+    <p>Run against 42 ledger entries and 41 bank entries, the script correctly identified all five planted exceptions and classified each one correctly:</p>
+    <table class="exception-table">
+      <tr><th>Reference</th><th>Issue</th><th>Likely cause</th></tr>
+      <tr><td>GL-1014</td><td>Missing on bank</td><td>Payment logged but not yet cleared</td></tr>
+      <tr><td>GL-1022</td><td>Duplicate entry</td><td>Same transaction logged twice</td></tr>
+      <tr><td>GL-1030</td><td>Amount mismatch</td><td>90 EUR difference, likely a transposed digit</td></tr>
+      <tr><td>GL-1041</td><td>Timing difference</td><td>Same amount, posted 4 days apart</td></tr>
+      <tr><td>BANK-FEE-01</td><td>Missing on ledger</td><td>Bank fee never recorded internally</td></tr>
+    </table>
+    <p>One detail worth noting, the timing difference case was flagged with a note that a 4 day gap is longer than a normal settlement lag and worth confirming rather than dismissing automatically. The tool surfaces a judgment call instead of quietly assuming it is fine.</p>
+  </section>
+
+  <section id="extend">
+    <h2>What I would extend next</h2>
+    <ul>
+      <li>Connect it to a live spreadsheet or a simple database instead of static CSV files, so it could run on a schedule.</li>
+      <li>Add an AI generated summary across all exceptions for a manager, not just a per line reason.</li>
+      <li>Track exceptions over time to spot recurring patterns, the same instinct that led to the original compliance checklist.</li>
+    </ul>
+  </section>
+
+  <section id="tools">
+    <h2>Tools used</h2>
+    <p class="tools-line">Python, CSV based mock data, AI assisted development and debugging</p>
+    <div class="actions">
+      <a class="btn" href="reconcile.py" download>Download the script</a>
+      <a class="btn" href="data/general_ledger.csv" download>Ledger data</a>
+      <a class="btn" href="data/bank_statement.csv" download>Bank data</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html">&larr; Back to portfolio</a>
+  </footer>
+</div>
+
+</body>
+</html>
